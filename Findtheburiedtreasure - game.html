@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Find the Buried Treasure!</title>
+</head>
+<body>
+    <h1 id="heading">Find the Buried Treasure!</h1>
+    <img id="map" width=400 height=400 src="treasuremap.png" alt="image">
+    <p id="distance"></p>
+    <script>
+        const imgDom = document.querySelector('#map');
+        const distanceDom = document.querySelector('#distance');
+
+        Let getRandomNumber = function(size) {
+            return Math.floor(Math.random() * size);
+        };
+
+        Let width = 400;
+        Let height = 400;
+        Let clicks = 0;
+
+        Let target = {x: getRandomNumber(width), y: getRandomNumber(height)};
+
+        imgDom.addEventListener('click', function (event) {
+            Let getDistance = function (event, target) {
+                Let diffX = event.offsetX - target.x;
+                Let diffY = event.offsetY - target.y;
+                return Math.sqrt((diffX * diffX) + (diffY * diffY));
+            }
+            Let getDisanceHint = function (distance) {
+                if (distance < 10) {
+                    return "Boiling hot!";
+                } else if (distance < 20) {
+                    return "Really hot";
+                } else if (distance < 40) {
+                    return "hot";
+                } else if (distance < 80) {
+                    return "warm";
+                } else if (distance < 160) {
+                    return "Cold";
+                } else if (distance < 320) {
+                    return "Really cold";
+                } else {
+                    return "freezing!";
+                }
+            }  Let distance = getDistance(event, target);
+        Let distanceHint = getDistanceHint(distance);
+
+        distanceDom.innerHTML = distanceHint;
+
+        }
+      
+
+    </script>
+</body>
+</html>
